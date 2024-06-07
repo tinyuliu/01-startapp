@@ -23,11 +23,20 @@ document.body.appendChild(renderer.domElement); // renderer.domElement is the ca
 const geometry = new THREE.BoxGeometry(1, 1, 1);
 // Create material
 const material = new THREE.MeshBasicMaterial({color: 0xee82ee});
-// Create mash
-const cube = new THREE.Mesh(geometry, material);
+const parentMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
 
-// Add the cube to the scene
-scene.add(cube);
+// Create mash
+
+// cube.position.x = 2;
+// cube.position.set(2, 0, 0); // x,, y, z
+let parentCube = new THREE.Mesh(geometry, parentMaterial);
+const cube = new THREE.Mesh(geometry, material);
+parentCube.add(cube);
+parentCube.position.set(-3, 0, 0); // 原點會是原作標
+cube.position.set(3, 0, 0); // 原點會是父元素的位置
+
+// Add the parentCube to the scene
+scene.add(parentCube);
 
 // Set te camera position, the default will be 0
 camera.position.z = 5;
@@ -46,7 +55,7 @@ controls.enableDamping = true;
 // 設置組尼係數
 controls.dampingFactor = 0.05;
 // 設置旋轉速度
-controls.autoRotate = 0.05;
+// controls.autoRotate = 0.05;
 
 
 // Render function
