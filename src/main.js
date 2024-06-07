@@ -34,9 +34,14 @@ const cube = new THREE.Mesh(geometry, material);
 parentCube.add(cube);
 parentCube.position.set(-3, 0, 0); // 原點會是原作標
 cube.position.set(3, 0, 0); // 原點會是父元素的位置
+
 // 設置立方體放大
-cube.scale.set(2, 2, 2);
-parentCube.scale.set(2, 2, 2);
+// cube.scale.set(2, 2, 2);
+// parentCube.scale.set(2, 2, 2);
+
+// 繞著x軸旋轉
+cube.rotation.x = Math.PI / 4; // 90度 
+parentCube.rotation.x = Math.PI / 4; // 90度
 
 // Add the parentCube to the scene
 scene.add(parentCube);
