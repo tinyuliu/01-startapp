@@ -40,7 +40,7 @@ const axesHelper = new THREE.AxesHelper(5);
 scene.add(axesHelper);
 
 // 添加軌道控制器
-const controls = new OrbitControls(camera, renderer.domElement);
+const controls = new OrbitControls(camera, document.body);
 // 設置帶組尼的慣性
 controls.enableDamping = true;
 // 設置組尼係數
