@@ -29,7 +29,13 @@ scene.add(cube);
 
 // Set te camera position, the default will be 0
 camera.position.z = 5;
+camera.position.y = 2;
+camera.position.x = 2;
 camera.lookAt(0, 0, 0);
+
+// 添加世界座標輔助器
+const axesHelper = new TreeWalker.AxesHelper(5);
+scene.add(axesHelper);
 
 
 // Render function
