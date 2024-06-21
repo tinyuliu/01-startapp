@@ -57,14 +57,13 @@ const axesHelper = new THREE.AxesHelper(5);
 scene.add(axesHelper);
 
 // 添加軌道控制器
-const controls = new OrbitControls(camera, document.body);
+const controls = new OrbitControls(camera, renderer.domElement);
 // 設置帶組尼的慣性
 controls.enableDamping = true;
 // 設置組尼係數
 controls.dampingFactor = 0.05;
 // 設置旋轉速度
 // controls.autoRotate = 0.05;
-
 
 // Render function
 function animate() {
@@ -82,4 +81,41 @@ function animate() {
 
 animate();
 
+// Resize event
+window.addEventListener("resize", () => {
+	// 重置渲染器的寬高比
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	// 重置相機的寬高比
+	camera.aspect = window.innerWidth / window.innerHeight;
+	// 更新相機的投影矩陣
+	camera.updateProjectionMatrix();
+});
 
+// 監聽鼠標移動事件
+var btn = document.createElement("button");
+btn.innerHTML = "Click Full Screen";
+btn.style.position = "absolute";
+btn.style.top = "10px";
+btn.style.left = "10px";
+btn.style.zIndex = "100";
+btn.onclick = function () {
+	// 全屏
+	renderer.domElement.requestFullscreen();
+	console.log("full screen");
+};
+
+document.body.appendChild(btn);
+
+// 退出全屏
+var exitBtn = document.createElement("button");
+exitBtn.innerHTML = "Exit Full Screen";
+exitBtn.style.position = "absolute";
+exitBtn.style.top = "10px";
+exitBtn.style.left = "100px";
+exitBtn.style.zIndex = "999";
+exitBtn.onclick = function () {
+	// 退出全屏
+	document.exitFullscreen();
+	console.log("exit full screen");
+};
+document.body.appendChild(exitBtn);
